@@ -15,15 +15,15 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT }}
-        script: |
-          cd /var/www/cicd-2-laravel-sipus
-          git pull origin main
-          docker compose down
-          docker compose build --no-cache
-          docker compose up -d
-          docker compose exec -T app composer install --no-dev --optimize-autoloader
-          docker compose exec -T app php artisan migrate
-          docker compose exec -T app php artisan config:cache
-          docker compose exec -T app php artisan route:cache
-          docker compose exec -T app php artisan view:cache
+          script: |
+            cd /var/www/cicd-2-laravel-sipus
+            git pull origin main
+            docker compose down
+            docker compose build --no-cache
+            docker compose up -d
+            docker compose exec -T app composer install --no-dev --optimize-autoloader
+            docker compose exec -T app php artisan migrate
+            docker compose exec -T app php artisan config:cache
+            docker compose exec -T app php artisan route:cache
+            docker compose exec -T app php artisan view:cache
         
